@@ -8,20 +8,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --page:        #f2f4f2;       /* light grey page                    */
-    --card:        #ffffff;       /* pure white cards                   */
-    --ink:         #111111;       /* near-black primary text            */
-    --ink-mid:     #333333;       /* strong secondary text              */
-    --ink-soft:    #888888;       /* muted text                         */
-    --pine:        #1a1a1a;       /* near-black for headers/nav         */
-    --pine-mid:    #333333;       /* dark border                        */
-    --fairway:     #2e7d32;       /* kelly green — accents & labels     */
-    --fairway-bg:  #2e7d32;       /* kelly green background             */
-    --gold:        #2e7d32;       /* reuse green for "winner" accents   */
-    --gold-light:  #4caf50;       /* lighter green                      */
-    --win-a-bg:    #2e7d32;       /* Team A hole win — kelly green      */
-    --win-b-bg:    #c62828;       /* Team B hole win — clean red        */
-    --halve-bg:    #555555;       /* halved — neutral dark grey         */
+    --page:        #f2f4f2;
+    --card:        #ffffff;
+    --ink:         #111111;
+    --ink-mid:     #333333;
+    --ink-soft:    #888888;
+    --pine:        #1a1a1a;
+    --pine-mid:    #333333;
+    --team-a:      #2e7d32;       /* Team A — kelly green               */
+    --team-a-bg:   #2e7d32;
+    --team-a-light:#e8f5e9;       /* pale green for header gradient     */
+    --team-b:      #1565c0;       /* Team B — strong blue               */
+    --team-b-bg:   #1565c0;
+    --team-b-light:#e3f0fc;       /* pale blue for header gradient      */
+    --fairway:     #2e7d32;
+    --win-a-bg:    #2e7d32;
+    --win-b-bg:    #1565c0;
+    --halve-bg:    #555555;
     --rule:        rgba(0,0,0,0.09);
     --shadow:      rgba(0,0,0,0.08);
   }
@@ -31,8 +34,25 @@
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--page);
+    background-image: linear-gradient(
+      160deg,
+      var(--team-a-light) 0%,
+      var(--page) 25%,
+      var(--page) 75%,
+      var(--team-b-light) 100%
+    );
+    background-attachment: fixed;
     color: var(--ink);
     min-height: 100vh;
+  }
+
+  /* ── PAGE HEADER BAND ───────────────────────────────────────── */
+  .page-header-band {
+    height: 6px;
+    max-width: 900px;
+    margin: 0 auto;
+    background: linear-gradient(to right, var(--team-a-light) 0%, #f2f4f2 45%, #f2f4f2 55%, var(--team-b-light) 100%);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
   }
 
   /* ── NAV ─────────────────────────────────────────────────────── */
@@ -63,9 +83,9 @@
   }
   .nav-btn:hover { color: var(--fairway); }
   .nav-btn.active {
-    background: var(--fairway);
+    background: var(--pine);
     color: #fff;
-    border-color: var(--fairway);
+    border-color: var(--pine);
   }
 
   /* ── MAIN ────────────────────────────────────────────────────── */
@@ -95,17 +115,20 @@
     flex-direction: column;
     align-items: center;
     gap: 0.15rem;
-    background: var(--fairway-bg);
+    background: var(--team-a-bg);
     padding: 0.7rem 0.5rem;
     border: 1px solid rgba(0,0,0,0.08);
     box-shadow: 0 1px 6px var(--shadow);
     transition: border-color 0.3s, box-shadow 0.3s;
   }
+  .day-total-block:last-child {
+    background: var(--team-b-bg);
+  }
   .day-total-block:first-child { border-radius: 3px 0 0 3px; border-right: none; }
   .day-total-block:last-child  { border-radius: 0 3px 3px 0; border-left: none; }
   .day-total-block.winning {
-    border-color: var(--fairway);
-    box-shadow: 0 2px 12px rgba(46,125,50,0.3);
+    border-color: rgba(255,255,255,0.6);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
   }
   .day-total-block:first-child.winning { border-right-color: rgba(0,0,0,0.08); }
   .day-total-block:last-child.winning  { border-left-color: rgba(0,0,0,0.08); }
@@ -321,9 +344,9 @@
     border: 1px solid rgba(46,125,50,0.25);
   }
   .team-label-b {
-    background: rgba(198,40,40,0.08);
-    color: var(--win-b-bg);
-    border: 1px solid rgba(198,40,40,0.2);
+    background: rgba(21,101,192,0.1);
+    color: var(--team-b);
+    border: 1px solid rgba(21,101,192,0.25);
   }
   .team-name-input {
     font-family: 'DM Sans', sans-serif;
@@ -371,7 +394,7 @@
     vertical-align: middle;
   }
   .seg-result.seg-a { color: var(--fairway); }
-  .seg-result.seg-b { color: var(--win-b-bg); }
+  .seg-result.seg-b { color: var(--team-b); }
   .seg-result.seg-h { color: var(--halve-bg); }
 
   /* Running score row */
@@ -410,7 +433,7 @@
     color: var(--ink);
   }
   .match-summary .live-score.a-winning { color: var(--fairway); }
-  .match-summary .live-score.b-winning { color: var(--win-b-bg); }
+  .match-summary .live-score.b-winning { color: var(--team-b); }
 
   /* ── RESET ───────────────────────────────────────────────────── */
   .reset-btn {
@@ -467,6 +490,8 @@
   <button class="nav-btn active" onclick="showView('friday')">Friday</button>
   <button class="nav-btn" onclick="showView('saturday')">Saturday</button>
 </nav>
+
+<div class="page-header-band" id="page-header-band"></div>
 
 <div class="day-totals-bar" id="day-totals-bar">
   <div class="day-total-block">
