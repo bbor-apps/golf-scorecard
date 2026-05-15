@@ -243,6 +243,7 @@
     padding: 0.5rem 0.75rem;
     background: #1a1a1a;
     border-bottom: none;
+    gap: 0.5rem;
   }
   .segment-label {
     font-family: 'DM Mono', monospace;
@@ -252,15 +253,6 @@
     color: #ffffff;
     font-weight: 600;
   }
-  .format-legend {
-    display: flex;
-    gap: 0.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.52rem;
-    letter-spacing: 0.06em;
-    color: rgba(255,255,255,0.6);
-  }
-  .fl-item { display: flex; align-items: center; gap: 0.2rem; }
   .segment-format {
     font-family: 'DM Mono', monospace;
     font-size: 0.55rem;
@@ -269,20 +261,22 @@
     color: rgba(255,255,255,0.5);
     font-weight: 400;
   }
-  .fl-dot { width: 7px; height: 7px; border-radius: 1px; }
-  .fl-dot.a { background: var(--win-a-bg); }
-  .fl-dot.h { background: var(--halve-bg); }
-  .fl-dot.b { background: var(--win-b-bg); }
 
   /* ── SCORECARD TABLE ─────────────────────────────────────────── */
   .scorecard-wrap {
-    overflow-x: hidden;
+    overflow-x: auto;
     padding: 0.25rem 0.4rem 0.4rem;
   }
   table.scorecard {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
+  }
+  col.col-team { width: 100px; }
+  col.col-hole { width: calc((100% - 100px) / 6); }
+  @media (max-width: 600px) {
+    col.col-team { width: 84px; }
+    col.col-hole { width: calc((100% - 84px) / 6); }
   }
   table.scorecard th, table.scorecard td {
     text-align: center;
@@ -304,7 +298,6 @@
   .sc-header th.team-col {
     text-align: left;
     padding-left: 0.4rem;
-    width: 100px;
     border-right: 2px solid var(--rule);
   }
 
@@ -317,7 +310,6 @@
   .sc-team td.team-name-cell {
     text-align: left;
     padding: 3px 4px 3px 6px;
-    width: 100px;
     border-right: 2px solid var(--rule);
     vertical-align: middle;
   }
@@ -465,8 +457,8 @@
     .day-total-score { font-size: 1.75rem; }
     .day-total-divider { font-size: 0.46rem; padding: 0.4rem 0.6rem; }
     .match-card { margin-bottom: 1.1rem; }
-    .sc-header th.team-col { width: 84px; }
-    .sc-team td.team-name-cell { width: 84px; }
+    .sc-header th.team-col { }
+    .sc-team td.team-name-cell { }
     .team-name-input { width: 68px; font-size: 0.62rem; }
     .sc-status td { font-size: 0.44rem; }
     .match-summary { font-size: 0.58rem; }
@@ -519,11 +511,6 @@
         <div class="segment-header">
           <span class="segment-label">Holes 1–6</span>
           <span class="segment-format">Scramble</span>
-          <div class="format-legend">
-            <span class="fl-item"><span class="fl-dot a"></span>A</span>
-            <span class="fl-item"><span class="fl-dot h"></span>½</span>
-            <span class="fl-item"><span class="fl-dot b"></span>B</span>
-          </div>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-1-1"></table>
@@ -854,6 +841,10 @@ function buildScorecard(day, matchIdx, segIdx) {
   }
 
   tableEl.innerHTML = `
+    <colgroup>
+      <col class="col-team">
+      ${holeNums.map(() => `<col class="col-hole">`).join('')}
+    </colgroup>
     <thead>
       <tr class="sc-header">
         <th class="team-col">Team</th>
