@@ -299,13 +299,6 @@
     width: 100px;
     border-right: 2px solid var(--rule);
   }
-  .sc-header th.seg-col {
-    color: var(--gold);
-    font-size: 0.52rem;
-    width: 30px;
-    border-right: none;
-    border-left: 2px solid var(--rule);
-  }
 
   /* Team rows */
   .sc-team td {
@@ -384,18 +377,6 @@
   .hole-cell.win-b  { background: var(--win-b-bg);  color: #fff !important; }
   .hole-cell.halved { background: var(--halve-bg);  color: #fff !important; }
 
-  /* Seg result cell */
-  .seg-result {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--ink-mid);
-    border-left: 2px solid var(--rule);
-    vertical-align: middle;
-  }
-  .seg-result.seg-a { color: var(--fairway); }
-  .seg-result.seg-b { color: var(--team-b); }
-  .seg-result.seg-h { color: var(--halve-bg); }
 
   /* Running score row */
   .sc-status td {
@@ -857,7 +838,6 @@ function buildScorecard(day, matchIdx, segIdx) {
       <tr class="sc-header">
         <th class="team-col">Team</th>
         ${holeNums.map(n => `<th>${n}</th>`).join('')}
-        <th class="seg-col">Seg</th>
       </tr>
     </thead>
     <tbody>
@@ -878,7 +858,6 @@ function buildScorecard(day, matchIdx, segIdx) {
           data-day="${day}" data-match="${matchIdx}" data-seg="${segIdx}" data-hole="${i}" data-team="A"
           onclick="window._cycleHole(this)"
           >${h===1?'W':h===2?'½':''}</td>`).join('')}
-        <td class="seg-result ${segClass}" rowspan="2">${segLabel}</td>
       </tr>
       <tr class="sc-team" data-day="${day}" data-match="${matchIdx}" data-seg="${segIdx}" data-team="1">
         <td class="team-name-cell">
@@ -901,7 +880,6 @@ function buildScorecard(day, matchIdx, segIdx) {
       <tr class="sc-status">
         <td class="team-col"></td>
         ${runningScores.map(s => `<td>${runLabel(s)}</td>`).join('')}
-        <td></td>
       </tr>
     </tbody>
   `;
