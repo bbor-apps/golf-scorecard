@@ -201,62 +201,60 @@
 
   /* SCORECARD TABLE */
   .scorecard-wrap {
-    overflow-x: auto;
-    padding: 0 0.5rem 0.75rem;
+    overflow-x: hidden;
+    padding: 0 0.4rem 0.6rem;
   }
   table.scorecard {
     width: 100%;
     border-collapse: collapse;
-    min-width: 420px;
+    table-layout: fixed;
   }
   table.scorecard th, table.scorecard td {
     text-align: center;
     padding: 0;
     font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
   /* Header row: hole numbers */
   .sc-header th {
     color: var(--text-light);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    padding: 0.3rem 0.2rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0;
     font-weight: 400;
   }
   .sc-header th.team-col {
     text-align: left;
-    padding-left: 0.75rem;
-    min-width: 150px;
+    padding-left: 0.5rem;
+    width: 110px;
   }
   .sc-header th.seg-col {
     color: var(--gold);
-    font-size: 0.6rem;
-    min-width: 44px;
+    font-size: 0.55rem;
+    width: 32px;
   }
 
   /* Team name rows */
   .sc-team td {
-    height: 38px;
-    width: 38px;
-    max-width: 38px;
+    height: 36px;
   }
   .sc-team td.team-name-cell {
     text-align: left;
-    padding: 0 0.5rem 0 0.75rem;
-    width: auto;
-    max-width: none;
+    padding: 0 0.25rem 0 0.5rem;
+    width: 110px;
     white-space: nowrap;
+    overflow: hidden;
   }
   .team-label {
     font-family: 'DM Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     font-style: normal;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 500;
-    padding: 1px 5px;
+    padding: 1px 4px;
     border-radius: 2px;
-    margin-right: 5px;
+    margin-right: 3px;
     vertical-align: middle;
     display: inline-block;
   }
@@ -272,17 +270,16 @@
   }
 
   .team-name-input {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
     font-weight: 400;
     color: var(--text-dark);
     background: transparent;
     border: none;
     border-bottom: 1px dashed rgba(26,51,32,0.25);
     outline: none;
-    width: 90px;
-    padding: 2px 4px;
+    width: 60px;
+    padding: 1px 2px;
     cursor: text;
     transition: border-color 0.2s;
     vertical-align: middle;
@@ -295,14 +292,12 @@
     cursor: pointer;
     border-radius: 2px;
     transition: background 0.15s, color 0.15s;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 500;
     color: transparent;
     user-select: none;
     background: rgba(26,51,32,0.05);
-    margin: 0 1px;
-    height: 34px;
-    width: 34px;
+    height: 36px;
     display: table-cell;
     vertical-align: middle;
   }
@@ -356,69 +351,6 @@
   .match-summary .live-score.a-winning { color: #2a7a48; }
   .match-summary .live-score.b-winning { color: #b03020; }
 
-  /* LEADERBOARD */
-  .leaderboard-view { display: none; }
-  .leaderboard-view.active { display: block; }
-
-  .lb-section-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--green-accent);
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid rgba(26,51,32,0.15);
-  }
-
-  .lb-table-wrap {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 12px var(--shadow);
-  }
-  table.lb-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  table.lb-table th {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.75);
-    padding: 0.6rem 1rem;
-    text-align: left;
-    background: var(--green-deep);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-  }
-  table.lb-table th:not(:first-child) { text-align: center; }
-  table.lb-table td {
-    padding: 0.65rem 1rem;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-dark);
-  }
-  table.lb-table td:not(:first-child) { text-align: center; }
-  table.lb-table tr:last-child td { border-bottom: none; }
-  .lb-rank {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--text-light);
-    margin-right: 0.5rem;
-  }
-  .lb-rank.gold { color: var(--gold); }
-  .lb-rank.silver { color: #888; }
-  .lb-rank.bronze { color: #a06828; }
-  .lb-total {
-    font-weight: 500;
-    font-size: 0.95rem;
-  }
-  .lb-total.leader { color: var(--green-accent); font-weight: 700; }
 
   /* Reset */
   .reset-btn {
@@ -541,8 +473,21 @@
   }
 
   @media (max-width: 600px) {
-    h1 { font-size: 1.8rem; }
-    .match-header { flex-direction: column; gap: 0.4rem; align-items: flex-start; }
+    .main { padding: 1rem 0.4rem 4rem; }
+    .match-card { margin-bottom: 1.25rem; }
+    .scorecard-wrap { padding: 0 0.25rem 0.5rem; }
+    .sc-header th.team-col { width: 95px; }
+    .sc-team td.team-name-cell { width: 95px; }
+    .team-name-input { width: 48px; font-size: 0.65rem; }
+    .team-label { font-size: 0.45rem; padding: 1px 3px; margin-right: 2px; }
+    .sc-status td { font-size: 0.5rem; }
+    .segment-label { font-size: 0.55rem; padding: 0.4rem 0.6rem 0.2rem; }
+    .format-legend { padding: 0.2rem 0.6rem 0.3rem; font-size: 0.5rem; }
+    .match-summary { font-size: 0.62rem; padding: 0.5rem 0.6rem; }
+    .match-summary .live-score { font-size: 0.85rem; }
+    .day-totals-bar { margin: 0.75rem 0.4rem 0; }
+    .day-total-score { font-size: 1.6rem; }
+    .day-total-divider { font-size: 0.5rem; padding: 0.5rem 0.75rem; }
   }
 </style>
 </head>
@@ -551,7 +496,6 @@
 <nav class="nav" id="mainNav">
   <button class="nav-btn active" onclick="showView('friday')">Friday</button>
   <button class="nav-btn" onclick="showView('saturday')">Saturday</button>
-  <button class="nav-btn" onclick="showView('leaderboard')">Leaderboard</button>
 </nav>
 
 <div class="day-totals-bar" id="day-totals-bar">
@@ -738,40 +682,6 @@
     </div>
   </div>
 
-  <!-- LEADERBOARD -->
-  <div class="leaderboard-view" id="view-leaderboard">
-    <div class="lb-section-title">Match Results</div>
-    <div class="lb-table-wrap">
-      <table class="lb-table" id="lb-match-table">
-        <thead>
-          <tr>
-            <th>Match</th>
-            <th>Team A</th>
-            <th>Pts</th>
-            <th></th>
-            <th>Pts</th>
-            <th>Team B</th>
-          </tr>
-        </thead>
-        <tbody id="lb-match-body"></tbody>
-      </table>
-    </div>
-
-    <div class="lb-section-title">Overall Weekend Standings</div>
-    <div class="lb-table-wrap">
-      <table class="lb-table" id="lb-standings-table">
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody id="lb-standings-body"></tbody>
-      </table>
-    </div>
-  </div>
 
   <button class="reset-btn" onclick="confirmReset()">↺ Reset All Scores</button>
 </div>
@@ -1024,7 +934,6 @@ function renderAll() {
       [0,1,2].forEach(segIdx => { renderMatchSummary(day, matchIdx, segIdx); });
     });
   });
-  renderLeaderboard();
   renderDayTotals();
 }
 
@@ -1050,61 +959,6 @@ function renderMatchSummary(day, matchIdx, segIdx) {
   `;
 }
 
-function renderLeaderboard() {
-  const tbody = document.getElementById('lb-match-body');
-  if (!tbody) return;
-  const rows = [];
-  DAYS.forEach(day => {
-    [0,1].forEach(matchIdx => {
-      const pts = matchPoints(day, matchIdx);
-      const nameA = state.names[day][matchIdx][0] || 'Team A';
-      const nameB = state.names[day][matchIdx][1] || 'Team B';
-      const label = day === 'fri' ? ['Friday Match 1','Friday Match 2'][matchIdx] : ['Saturday Match 1','Saturday Match 2'][matchIdx];
-      const aWin = pts.a > pts.b, bWin = pts.b > pts.a;
-      const aStr = pts.a % 1 === 0 ? pts.a : pts.a.toFixed(1);
-      const bStr = pts.b % 1 === 0 ? pts.b : pts.b.toFixed(1);
-      rows.push(`<tr>
-        <td style="color:var(--text-light);font-size:0.65rem;letter-spacing:0.08em">${label}</td>
-        <td style="text-align:right;padding-right:0.5rem;font-size:0.75rem;color:var(--text-dark)">${escHtml(nameA)}</td>
-        <td class="${aWin?'lb-total leader':''}">${aStr}</td>
-        <td style="color:var(--text-light);font-size:0.65rem">—</td>
-        <td class="${bWin?'lb-total leader':''}">${bStr}</td>
-        <td style="text-align:left;padding-left:0.5rem;font-size:0.75rem;color:var(--text-dark)">${escHtml(nameB)}</td>
-      </tr>`);
-    });
-  });
-  tbody.innerHTML = rows.join('');
-
-  const teamMap = {};
-  DAYS.forEach(day => {
-    [0,1].forEach(matchIdx => {
-      const pts = matchPoints(day, matchIdx);
-      const nameA = state.names[day][matchIdx][0] || 'Team A';
-      const nameB = state.names[day][matchIdx][1] || 'Team B';
-      if (!teamMap[nameA]) teamMap[nameA] = {fri:0, sat:0};
-      if (!teamMap[nameB]) teamMap[nameB] = {fri:0, sat:0};
-      teamMap[nameA][day] += pts.a;
-      teamMap[nameB][day] += pts.b;
-    });
-  });
-  const teams = Object.entries(teamMap)
-    .map(([name, d]) => ({ name, fri: d.fri, sat: d.sat, total: d.fri + d.sat }))
-    .sort((a,b) => b.total - a.total);
-  const sbody = document.getElementById('lb-standings-body');
-  if (!sbody) return;
-  const rankClasses = ['gold','silver','bronze'];
-  sbody.innerHTML = teams.map((t,i) => {
-    const rkCls = rankClasses[i] || '';
-    const totalStr = t.total % 1 === 0 ? t.total : t.total.toFixed(1);
-    const friStr = t.fri % 1 === 0 ? t.fri : t.fri.toFixed(1);
-    const satStr = t.sat % 1 === 0 ? t.sat : t.sat.toFixed(1);
-    return `<tr>
-      <td><span class="lb-rank ${rkCls}">${i+1}.</span>${escHtml(t.name)}</td>
-      <td>${friStr}</td><td>${satStr}</td>
-      <td class="${i===0?'lb-total leader':'lb-total'}">${totalStr}</td>
-    </tr>`;
-  }).join('');
-}
 
 // ─── DAY TOTALS ───────────────────────────────────────────────────────────────
 let _activeView = 'friday';
@@ -1114,7 +968,6 @@ function renderDayTotals() {
   const elA = document.getElementById('day-total-a');
   const elB = document.getElementById('day-total-b');
   if (!elA || !elB) return;
-  if (_activeView === 'leaderboard') { bar.style.display = 'none'; return; }
   bar.style.display = 'flex';
   const day = _activeView === 'saturday' ? 'sat' : 'fri';
   let totalA = 0, totalB = 0;
@@ -1141,7 +994,7 @@ window.showView = function(view) {
   const viewMap = { friday: 'view-friday', saturday: 'view-saturday', leaderboard: 'view-leaderboard' };
   const el = document.getElementById(viewMap[view]);
   if (el) el.classList.add('active');
-  const btnIdx = {friday:0, saturday:1, leaderboard:2}[view];
+  const btnIdx = {friday:0, saturday:1}[view];
   document.querySelectorAll('.nav-btn')[btnIdx]?.classList.add('active');
   renderDayTotals();
 };
@@ -1165,9 +1018,15 @@ function escHtml(str) {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
-// Show loading state while Firebase connects
+// Auto-select tab based on device date: Saturday (Jun 6) → saturday, else friday
+const _today = new Date();
+// June 6+ → Saturday tab, before June 6 → Friday tab
+const _isSaturday = _today.getMonth() === 5 && _today.getDate() >= 6;
+const _defaultView = _isSaturday ? 'saturday' : 'friday';
+window.showView(_defaultView);
+
 document.getElementById('day-totals-bar').style.opacity = '0.4';
-renderAll(); // render with defaults immediately, Firebase will update on connect
+renderAll();
 setTimeout(() => { document.getElementById('day-totals-bar').style.opacity = '1'; }, 1000);
 
 </script>
