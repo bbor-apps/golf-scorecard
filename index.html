@@ -240,16 +240,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.45rem 0.75rem 0.3rem;
-    background: rgba(0,0,0,0.03);
-    border-bottom: 1px solid var(--rule);
+    padding: 0.5rem 0.75rem;
+    background: #1a1a1a;
+    border-bottom: none;
   }
   .segment-label {
     font-family: 'DM Mono', monospace;
     font-size: 0.68rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--fairway);
+    color: #ffffff;
     font-weight: 600;
   }
   .format-legend {
@@ -258,9 +258,17 @@
     font-family: 'DM Mono', monospace;
     font-size: 0.52rem;
     letter-spacing: 0.06em;
-    color: var(--ink-soft);
+    color: rgba(255,255,255,0.6);
   }
   .fl-item { display: flex; align-items: center; gap: 0.2rem; }
+  .segment-format {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+  }
   .fl-dot { width: 7px; height: 7px; border-radius: 1px; }
   .fl-dot.a { background: var(--win-a-bg); }
   .fl-dot.h { background: var(--halve-bg); }
@@ -509,7 +517,8 @@
       <!-- Segment 1: Holes 1-6 Scramble -->
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 1–6 · Scramble</span>
+          <span class="segment-label">Holes 1–6</span>
+          <span class="segment-format">Scramble</span>
           <div class="format-legend">
             <span class="fl-item"><span class="fl-dot a"></span>A</span>
             <span class="fl-item"><span class="fl-dot h"></span>½</span>
@@ -524,7 +533,8 @@
       <!-- Segment 2: Holes 7-12 Alternate -->
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 7–12 · Partner Alternate</span>
+          <span class="segment-label">Holes 7–12</span>
+          <span class="segment-format">Partner Alternate</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-1-2"></table>
@@ -534,7 +544,8 @@
       <!-- Segment 3: Holes 13-18 Chapman -->
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 13–18 · Chapman</span>
+          <span class="segment-label">Holes 13–18</span>
+          <span class="segment-format">Chapman</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-1-3"></table>
@@ -561,7 +572,8 @@
       </div>
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 1–6 · Scramble</span>
+          <span class="segment-label">Holes 1–6</span>
+          <span class="segment-format">Scramble</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-2-1"></table>
@@ -570,7 +582,8 @@
       </div>
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 7–12 · Partner Alternate</span>
+          <span class="segment-label">Holes 7–12</span>
+          <span class="segment-format">Partner Alternate</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-2-2"></table>
@@ -579,7 +592,8 @@
       </div>
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 13–18 · Chapman</span>
+          <span class="segment-label">Holes 13–18</span>
+          <span class="segment-format">Chapman</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-2-3"></table>
@@ -609,7 +623,8 @@
       </div>
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 1–6 · Scramble</span>
+          <span class="segment-label">Holes 1–6</span>
+          <span class="segment-format">Scramble</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-1-1"></table>
@@ -618,7 +633,8 @@
       </div>
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 7–12 · Partner Alternate</span>
+          <span class="segment-label">Holes 7–12</span>
+          <span class="segment-format">Partner Alternate</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-1-2"></table>
@@ -627,7 +643,8 @@
       </div>
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 13–18 · Chapman</span>
+          <span class="segment-label">Holes 13–18</span>
+          <span class="segment-format">Chapman</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-1-3"></table>
@@ -654,7 +671,8 @@
       </div>
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 1–6 · Scramble</span>
+          <span class="segment-label">Holes 1–6</span>
+          <span class="segment-format">Scramble</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-2-1"></table>
@@ -663,7 +681,8 @@
       </div>
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 7–12 · Partner Alternate</span>
+          <span class="segment-label">Holes 7–12</span>
+          <span class="segment-format">Partner Alternate</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-2-2"></table>
@@ -672,7 +691,8 @@
       </div>
       <div class="segment">
         <div class="segment-header">
-          <span class="segment-label">Holes 13–18 · Chapman</span>
+          <span class="segment-label">Holes 13–18</span>
+          <span class="segment-format">Chapman</span>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-2-3"></table>
