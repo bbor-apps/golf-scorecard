@@ -8,201 +8,245 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green-deep: #1a3320;
-    --green-mid: #2d5438;
-    --green-light: #3d7a4d;
-    --green-accent: #4e9e62;
-    --green-bright: #3a7d4e;
-    --gold: #a8853a;
-    --gold-light: #c9a84c;
-    --cream: #f7f4ee;
-    --cream-dark: #ede8dc;
-    --white: #fefcf8;
-    --text-dark: #1a2b1e;
-    --text-mid: #2e4a38;
-    --text-light: #6b7c6e;
-    --red-soft: #b03020;
-    --blue-soft: #1e6090;
-    --shadow: rgba(26,51,32,0.12);
-    --card-bg: #ffffff;
-    --card-border: rgba(26,51,32,0.12);
-    --page-bg: #eef2ed;
+    --page:        #f2f4f2;       /* light grey page                    */
+    --card:        #ffffff;       /* pure white cards                   */
+    --ink:         #111111;       /* near-black primary text            */
+    --ink-mid:     #333333;       /* strong secondary text              */
+    --ink-soft:    #888888;       /* muted text                         */
+    --pine:        #1a1a1a;       /* near-black for headers/nav         */
+    --pine-mid:    #333333;       /* dark border                        */
+    --fairway:     #2e7d32;       /* kelly green — accents & labels     */
+    --fairway-bg:  #2e7d32;       /* kelly green background             */
+    --gold:        #2e7d32;       /* reuse green for "winner" accents   */
+    --gold-light:  #4caf50;       /* lighter green                      */
+    --win-a-bg:    #2e7d32;       /* Team A hole win — kelly green      */
+    --win-b-bg:    #c62828;       /* Team B hole win — clean red        */
+    --halve-bg:    #555555;       /* halved — neutral dark grey         */
+    --rule:        rgba(0,0,0,0.09);
+    --shadow:      rgba(0,0,0,0.08);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--page-bg);
-    color: var(--text-dark);
+    background: var(--page);
+    color: var(--ink);
     min-height: 100vh;
-    background-image:
-      radial-gradient(ellipse at 20% 0%, rgba(78,158,98,0.12) 0%, transparent 55%),
-      radial-gradient(ellipse at 80% 100%, rgba(168,133,58,0.07) 0%, transparent 50%);
   }
 
-  /* HEADER */
-  header {
-    text-align: center;
-    padding: 2.5rem 1rem 1.5rem;
-    position: relative;
-  }
-  header::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 2px;
-    background: var(--green-accent);
-    margin: 1rem auto 0;
-  }
-  .header-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--green-accent);
-    margin-bottom: 0.5rem;
-  }
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    font-weight: 900;
-    color: var(--green-deep);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-  }
-  h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  /* NAV TABS */
+  /* ── NAV ─────────────────────────────────────────────────────── */
   .nav {
     display: flex;
     justify-content: center;
-    gap: 0.25rem;
-    padding: 1.5rem 1rem 0;
+    gap: 0;
+    padding: 1.25rem 1rem 0;
+    border-bottom: 2px solid var(--rule);
+    max-width: 900px;
+    margin: 0 auto;
   }
   .nav-btn {
     font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
-    padding: 0.5rem 1.2rem;
-    border: 1px solid rgba(26,51,32,0.25);
+    padding: 0.55rem 1.6rem;
+    border: 1px solid transparent;
+    border-bottom: none;
     background: transparent;
-    color: var(--text-light);
+    color: var(--ink-soft);
     cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
+    border-radius: 3px 3px 0 0;
+    transition: all 0.15s;
+    position: relative;
+    top: 2px;
   }
-  .nav-btn:hover { color: var(--green-deep); border-color: var(--green-mid); }
+  .nav-btn:hover { color: var(--fairway); }
   .nav-btn.active {
-    background: var(--green-deep);
+    background: var(--fairway);
     color: #fff;
-    border-color: var(--green-deep);
-    font-weight: 500;
+    border-color: var(--fairway);
   }
 
-  /* MAIN CONTENT */
+  /* ── MAIN ────────────────────────────────────────────────────── */
   .main {
     max-width: 900px;
     margin: 0 auto;
-    padding: 1.5rem 1rem 4rem;
+    padding: 1.25rem 0.75rem 5rem;
   }
 
-  /* DAY VIEW */
+  /* ── DAY VIEW ────────────────────────────────────────────────── */
   .day-view { display: none; }
   .day-view.active { display: block; }
 
-  /* MATCH CARD */
+  /* ── DAY TOTALS BAR ──────────────────────────────────────────── */
+  .day-totals-bar {
+    display: flex;
+    align-items: stretch;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 0.75rem;
+    margin-top: 1rem;
+    gap: 0;
+  }
+  .day-total-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    background: var(--fairway-bg);
+    padding: 0.7rem 0.5rem;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 1px 6px var(--shadow);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .day-total-block:first-child { border-radius: 3px 0 0 3px; border-right: none; }
+  .day-total-block:last-child  { border-radius: 0 3px 3px 0; border-left: none; }
+  .day-total-block.winning {
+    border-color: var(--fairway);
+    box-shadow: 0 2px 12px rgba(46,125,50,0.3);
+  }
+  .day-total-block:first-child.winning { border-right-color: rgba(0,0,0,0.08); }
+  .day-total-block:last-child.winning  { border-left-color: rgba(0,0,0,0.08); }
+  .day-total-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+  }
+  .day-total-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(255,255,255,0.7);
+    transition: color 0.3s;
+  }
+  .day-total-score.leading { color: #fff; }
+  .day-total-divider {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-size: 0.62rem;
+    padding: 0.5rem 0.9rem;
+    background: #ffffff;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  /* ── MATCH CARD ──────────────────────────────────────────────── */
   .match-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 4px;
-    margin-bottom: 2rem;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
     overflow: hidden;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: 0 1px 8px var(--shadow);
   }
   .match-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.9rem 1.25rem 1rem;
-    background: var(--green-deep);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    gap: 0.5rem;
+    padding: 1rem 1.25rem 0.9rem;
+    background: #1a1a1a;
+    gap: 0.4rem;
   }
   .match-title {
     font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.75);
   }
   .match-points {
     display: flex;
     align-items: center;
-    gap: 0;
     width: 100%;
-    max-width: 420px;
+    max-width: 380px;
   }
   .pt-team-block {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.2rem;
+    gap: 0.15rem;
   }
   .pt-team-block.team-a { align-items: flex-start; }
   .pt-team-block.team-b { align-items: flex-end; }
   .pt-team-name {
     font-family: 'DM Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.14em;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.55);
   }
   .pt-badge {
     font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     font-weight: 900;
     line-height: 1;
-    color: rgba(255,255,255,0.55);
-    min-width: 2.5rem;
+    color: rgba(255,255,255,0.45);
+    min-width: 2rem;
     text-align: center;
     transition: color 0.3s;
   }
   .pt-badge.winner { color: #fff; }
   .pt-sep {
     font-family: 'DM Mono', monospace;
-    color: rgba(255,255,255,0.2);
-    font-size: 1.4rem;
-    padding: 0 0.75rem;
+    color: rgba(255,255,255,0.35);
+    font-size: 1.6rem;
+    padding: 0 0.6rem;
     line-height: 1;
-    align-self: center;
-    margin-bottom: 0.2rem;
+    align-self: flex-end;
+    margin-bottom: 0.3rem;
   }
 
-  /* SEGMENT */
-  .segment {
-    border-bottom: 1px solid rgba(0,0,0,0.07);
-  }
+  /* ── SEGMENT ─────────────────────────────────────────────────── */
+  .segment { border-bottom: 1px solid var(--rule); }
   .segment:last-child { border-bottom: none; }
+
+  .segment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.45rem 0.75rem 0.3rem;
+    background: rgba(0,0,0,0.03);
+    border-bottom: 1px solid var(--rule);
+  }
   .segment-label {
     font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--green-accent);
-    padding: 0.6rem 1rem 0.3rem;
-    font-weight: 500;
+    color: var(--fairway);
+    font-weight: 600;
   }
+  .format-legend {
+    display: flex;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+  .fl-item { display: flex; align-items: center; gap: 0.2rem; }
+  .fl-dot { width: 7px; height: 7px; border-radius: 1px; }
+  .fl-dot.a { background: var(--win-a-bg); }
+  .fl-dot.h { background: var(--halve-bg); }
+  .fl-dot.b { background: var(--win-b-bg); }
 
-  /* SCORECARD TABLE */
+  /* ── SCORECARD TABLE ─────────────────────────────────────────── */
   .scorecard-wrap {
     overflow-x: hidden;
-    padding: 0 0.4rem 0.6rem;
+    padding: 0.25rem 0.4rem 0.4rem;
   }
   table.scorecard {
     width: 100%;
@@ -213,281 +257,207 @@
     text-align: center;
     padding: 0;
     font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
   }
-  /* Header row: hole numbers */
+
+  /* Hole number header */
   .sc-header th {
-    color: var(--text-light);
-    font-size: 0.55rem;
-    letter-spacing: 0.05em;
-    padding: 0.25rem 0;
-    font-weight: 400;
+    color: var(--ink-mid);
+    font-size: 0.52rem;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0;
+    font-weight: 500;
+    border-right: 1px solid var(--rule);
   }
+  .sc-header th:last-child { border-right: none; }
   .sc-header th.team-col {
     text-align: left;
-    padding-left: 0.5rem;
-    width: 110px;
+    padding-left: 0.4rem;
+    width: 100px;
+    border-right: 2px solid var(--rule);
   }
   .sc-header th.seg-col {
     color: var(--gold);
-    font-size: 0.55rem;
-    width: 32px;
+    font-size: 0.52rem;
+    width: 30px;
+    border-right: none;
+    border-left: 2px solid var(--rule);
   }
 
-  /* Team name rows */
+  /* Team rows */
   .sc-team td {
-    height: 36px;
+    height: 44px;
+    border-right: 1px solid var(--rule);
   }
+  .sc-team td:last-child { border-right: none; }
   .sc-team td.team-name-cell {
     text-align: left;
-    padding: 0 0.25rem 0 0.5rem;
-    width: 110px;
-    white-space: nowrap;
-    overflow: hidden;
+    padding: 3px 4px 3px 6px;
+    width: 100px;
+    border-right: 2px solid var(--rule);
+    vertical-align: middle;
+  }
+
+  /* Team label ABOVE name — stacked layout */
+  .team-name-cell-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
   .team-label {
     font-family: 'DM Mono', monospace;
-    font-size: 0.5rem;
-    font-style: normal;
-    letter-spacing: 0.08em;
+    font-size: 0.48rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     font-weight: 500;
     padding: 1px 4px;
     border-radius: 2px;
-    margin-right: 3px;
-    vertical-align: middle;
     display: inline-block;
+    align-self: flex-start;
   }
   .team-label-a {
-    background: rgba(44,130,73,0.15);
-    color: #2a7a48;
-    border: 1px solid rgba(44,130,73,0.3);
+    background: rgba(46,125,50,0.1);
+    color: var(--fairway);
+    border: 1px solid rgba(46,125,50,0.25);
   }
   .team-label-b {
-    background: rgba(176,48,32,0.12);
-    color: #b03020;
-    border: 1px solid rgba(176,48,32,0.25);
+    background: rgba(198,40,40,0.08);
+    color: var(--win-b-bg);
+    border: 1px solid rgba(198,40,40,0.2);
   }
-
   .team-name-input {
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 400;
-    color: var(--text-dark);
+    color: var(--ink);
     background: transparent;
     border: none;
-    border-bottom: 1px dashed rgba(26,51,32,0.25);
+    border-bottom: 1px dashed rgba(28,28,24,0.2);
     outline: none;
-    width: 60px;
-    padding: 1px 2px;
+    width: 82px;
+    padding: 0 2px;
     cursor: text;
     transition: border-color 0.2s;
-    vertical-align: middle;
+    display: block;
   }
-  .team-name-input:focus { border-bottom-color: var(--green-accent); }
-  .team-name-input::placeholder { color: var(--text-light); opacity: 0.6; }
+  .team-name-input:focus { border-bottom-color: var(--fairway); }
+  .team-name-input::placeholder { color: var(--ink-soft); opacity: 0.7; }
 
   /* Hole cells */
   .hole-cell {
     cursor: pointer;
-    border-radius: 2px;
-    transition: background 0.15s, color 0.15s;
-    font-size: 0.7rem;
-    font-weight: 500;
+    font-size: 0.68rem;
+    font-weight: 600;
     color: transparent;
     user-select: none;
-    background: rgba(26,51,32,0.05);
-    height: 36px;
-    display: table-cell;
+    background: transparent;
+    transition: background 0.12s, color 0.12s;
+    border-right: 1px solid var(--rule);
     vertical-align: middle;
   }
-  .hole-cell:hover { background: rgba(26,51,32,0.12); color: var(--text-light) !important; }
-  .hole-cell.win-a { background: rgba(44, 130, 73, 0.75); color: #fff !important; }
-  .hole-cell.win-b { background: rgba(176, 48, 32, 0.7); color: #fff !important; }
-  .hole-cell.halved { background: rgba(30, 96, 144, 0.55); color: #fff !important; }
+  .hole-cell:last-of-type { border-right: none; }
+  .hole-cell:hover { background: rgba(0,0,0,0.07); color: var(--ink-soft) !important; }
+  .hole-cell.win-a  { background: var(--win-a-bg);  color: #fff !important; }
+  .hole-cell.win-b  { background: var(--win-b-bg);  color: #fff !important; }
+  .hole-cell.halved { background: var(--halve-bg);  color: #fff !important; }
 
-  /* Status row */
-  .sc-status td {
-    font-size: 0.6rem;
-    letter-spacing: 0.04em;
-    color: var(--text-light);
-    padding: 2px 1px 6px;
-    vertical-align: top;
-  }
-  .sc-status td.team-col { text-align: left; padding-left: 0.75rem; }
-
-  /* Segment result cell */
+  /* Seg result cell */
   .seg-result {
     font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--text-light);
-    padding: 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ink-mid);
+    border-left: 2px solid var(--rule);
+    vertical-align: middle;
   }
-  .seg-result.seg-a { color: #2a7a48; }
-  .seg-result.seg-b { color: #b03020; }
-  .seg-result.seg-h { color: #1e6090; }
+  .seg-result.seg-a { color: var(--fairway); }
+  .seg-result.seg-b { color: var(--win-b-bg); }
+  .seg-result.seg-h { color: var(--halve-bg); }
 
-  /* Match summary bar */
+  /* Running score row */
+  .sc-status td {
+    font-size: 0.48rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-mid);
+    padding: 2px 0 4px;
+    border-right: 1px solid var(--rule);
+  }
+  .sc-status td:last-child { border-right: none; }
+  .sc-status td.team-col {
+    text-align: left;
+    padding-left: 6px;
+    border-right: 2px solid var(--rule);
+  }
+
+  /* ── MATCH SUMMARY BAR ───────────────────────────────────────── */
   .match-summary {
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    background: rgba(26,51,32,0.05);
+    gap: 0.6rem;
+    background: rgba(0,0,0,0.03);
     font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--text-light);
-    letter-spacing: 0.08em;
-    border-top: 1px solid rgba(0,0,0,0.06);
+    font-size: 0.68rem;
+    color: var(--ink-mid);
+    letter-spacing: 0.06em;
+    border-top: 1px solid var(--rule);
   }
   .match-summary .live-score {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--ink);
   }
-  .match-summary .live-score.a-winning { color: #2a7a48; }
-  .match-summary .live-score.b-winning { color: #b03020; }
+  .match-summary .live-score.a-winning { color: var(--fairway); }
+  .match-summary .live-score.b-winning { color: var(--win-b-bg); }
 
-
-  /* Reset */
+  /* ── RESET ───────────────────────────────────────────────────── */
   .reset-btn {
     display: block;
     margin: 2rem auto 0;
     font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--text-light);
+    color: var(--ink-soft);
     background: transparent;
-    border: 1px solid rgba(26,51,32,0.18);
-    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--rule);
+    padding: 0.45rem 1.1rem;
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.2s;
   }
-  .reset-btn:hover { color: #b03020; border-color: rgba(176,48,32,0.35); }
+  .reset-btn:hover { color: var(--win-b-bg); border-color: rgba(140,35,24,0.3); }
 
-  /* Format legend */
-  .format-legend {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
-    padding: 0.3rem 1rem 0.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.08em;
-    color: var(--text-light);
-  }
-  .fl-item { display: flex; align-items: center; gap: 0.25rem; }
-  .fl-dot {
-    width: 8px; height: 8px; border-radius: 1px;
-  }
-  .fl-dot.a { background: rgba(44,130,73,0.75); }
-  .fl-dot.h { background: rgba(30,96,144,0.55); }
-  .fl-dot.b { background: rgba(176,48,32,0.7); }
-
-  /* Save indicator */
+  /* ── SAVE INDICATOR ──────────────────────────────────────────── */
   .save-indicator {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
     font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--green-accent);
+    color: var(--fairway);
     opacity: 0;
     transition: opacity 0.4s;
     pointer-events: none;
   }
   .save-indicator.show { opacity: 1; }
 
-  /* DAY TOTALS BAR */
-  .day-totals-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    max-width: 900px;
-    margin: 1.25rem auto 0;
-    padding: 0 1rem;
-  }
-  .day-total-block {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.2rem;
-    background: #fff;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--card-border);
-    box-shadow: 0 2px 10px var(--shadow);
-  }
-  .day-total-block:first-child {
-    border-radius: 4px 0 0 4px;
-    border-right: none;
-  }
-  .day-total-block:last-child {
-    border-radius: 0 4px 4px 0;
-    border-left: none;
-  }
-  .day-total-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-light);
-  }
-  .day-total-score {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 900;
-    line-height: 1;
-    color: var(--text-dark);
-    transition: color 0.3s;
-  }
-  .day-total-score.leading { color: var(--green-accent); }
-  .day-total-block.winning {
-    border: 2px solid var(--gold);
-    box-shadow: 0 2px 14px rgba(201,168,76,0.25);
-  }
-  .day-total-block:first-child.winning { border-right: 2px solid var(--gold); }
-  .day-total-block:last-child.winning  { border-left:  2px solid var(--gold); }
-  .day-total-divider {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    padding: 0.75rem 1.25rem;
-    background: rgba(26,51,32,0.04);
-    border-top: 1px solid var(--card-border);
-    border-bottom: 1px solid var(--card-border);
-    white-space: nowrap;
-    align-self: stretch;
-    display: flex;
-    align-items: center;
-  }
-
+  /* ── MOBILE ──────────────────────────────────────────────────── */
   @media (max-width: 600px) {
-    .main { padding: 1rem 0.4rem 4rem; }
-    .match-card { margin-bottom: 1.25rem; }
-    .scorecard-wrap { padding: 0 0.25rem 0.5rem; }
-    .sc-header th.team-col { width: 95px; }
-    .sc-team td.team-name-cell { width: 95px; }
-    .team-name-input { width: 48px; font-size: 0.65rem; }
-    .team-label { font-size: 0.45rem; padding: 1px 3px; margin-right: 2px; }
-    .sc-status td { font-size: 0.5rem; }
-    .segment-label { font-size: 0.55rem; padding: 0.4rem 0.6rem 0.2rem; }
-    .format-legend { padding: 0.2rem 0.6rem 0.3rem; font-size: 0.5rem; }
-    .match-summary { font-size: 0.62rem; padding: 0.5rem 0.6rem; }
-    .match-summary .live-score { font-size: 0.85rem; }
-    .day-totals-bar { margin: 0.75rem 0.4rem 0; }
-    .day-total-score { font-size: 1.6rem; }
-    .day-total-divider { font-size: 0.5rem; padding: 0.5rem 0.75rem; }
+    .main { padding: 1rem 0.35rem 5rem; }
+    .day-totals-bar { padding: 0 0.35rem; margin-top: 0.75rem; }
+    .day-total-score { font-size: 1.75rem; }
+    .day-total-divider { font-size: 0.46rem; padding: 0.4rem 0.6rem; }
+    .match-card { margin-bottom: 1.1rem; }
+    .sc-header th.team-col { width: 84px; }
+    .sc-team td.team-name-cell { width: 84px; }
+    .team-name-input { width: 68px; font-size: 0.62rem; }
+    .sc-status td { font-size: 0.44rem; }
+    .match-summary { font-size: 0.58rem; }
   }
 </style>
 </head>
@@ -532,11 +502,13 @@
       </div>
       <!-- Segment 1: Holes 1-6 Scramble -->
       <div class="segment">
-        <div class="segment-label">Holes 1–6 · Scramble</div>
-        <div class="format-legend">
-          <span class="fl-item"><span class="fl-dot a"></span>Team A</span>
-          <span class="fl-item"><span class="fl-dot h"></span>Halved</span>
-          <span class="fl-item"><span class="fl-dot b"></span>Team B</span>
+        <div class="segment-header">
+          <span class="segment-label">Holes 1–6 · Scramble</span>
+          <div class="format-legend">
+            <span class="fl-item"><span class="fl-dot a"></span>A</span>
+            <span class="fl-item"><span class="fl-dot h"></span>½</span>
+            <span class="fl-item"><span class="fl-dot b"></span>B</span>
+          </div>
         </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-1-1"></table>
@@ -545,7 +517,9 @@
       </div>
       <!-- Segment 2: Holes 7-12 Alternate -->
       <div class="segment">
-        <div class="segment-label">Holes 7–12 · Partner Alternate</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 7–12 · Partner Alternate</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-1-2"></table>
         </div>
@@ -553,7 +527,9 @@
       </div>
       <!-- Segment 3: Holes 13-18 Chapman -->
       <div class="segment">
-        <div class="segment-label">Holes 13–18 · Chapman</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 13–18 · Chapman</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-1-3"></table>
         </div>
@@ -578,21 +554,27 @@
         </div>
       </div>
       <div class="segment">
-        <div class="segment-label">Holes 1–6 · Scramble</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 1–6 · Scramble</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-2-1"></table>
         </div>
         <div class="match-summary" id="ms-fri-2-1"></div>
       </div>
       <div class="segment">
-        <div class="segment-label">Holes 7–12 · Partner Alternate</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 7–12 · Partner Alternate</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-2-2"></table>
         </div>
         <div class="match-summary" id="ms-fri-2-2"></div>
       </div>
       <div class="segment">
-        <div class="segment-label">Holes 13–18 · Chapman</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 13–18 · Chapman</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-fri-2-3"></table>
         </div>
@@ -620,21 +602,27 @@
         </div>
       </div>
       <div class="segment">
-        <div class="segment-label">Holes 1–6 · Scramble</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 1–6 · Scramble</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-1-1"></table>
         </div>
         <div class="match-summary" id="ms-sat-1-1"></div>
       </div>
       <div class="segment">
-        <div class="segment-label">Holes 7–12 · Partner Alternate</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 7–12 · Partner Alternate</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-1-2"></table>
         </div>
         <div class="match-summary" id="ms-sat-1-2"></div>
       </div>
       <div class="segment">
-        <div class="segment-label">Holes 13–18 · Chapman</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 13–18 · Chapman</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-1-3"></table>
         </div>
@@ -659,21 +647,27 @@
         </div>
       </div>
       <div class="segment">
-        <div class="segment-label">Holes 1–6 · Scramble</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 1–6 · Scramble</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-2-1"></table>
         </div>
         <div class="match-summary" id="ms-sat-2-1"></div>
       </div>
       <div class="segment">
-        <div class="segment-label">Holes 7–12 · Partner Alternate</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 7–12 · Partner Alternate</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-2-2"></table>
         </div>
         <div class="match-summary" id="ms-sat-2-2"></div>
       </div>
       <div class="segment">
-        <div class="segment-label">Holes 13–18 · Chapman</div>
+        <div class="segment-header">
+          <span class="segment-label">Holes 13–18 · Chapman</span>
+        </div>
         <div class="scorecard-wrap">
           <table class="scorecard" id="sc-sat-2-3"></table>
         </div>
@@ -844,14 +838,16 @@ function buildScorecard(day, matchIdx, segIdx) {
     <tbody>
       <tr class="sc-team" data-day="${day}" data-match="${matchIdx}" data-seg="${segIdx}" data-team="0">
         <td class="team-name-cell">
-          <span class="team-label team-label-a">Team A</span>
-          <input class="team-name-input" type="text"
-            placeholder="Enter names"
-            value="${escHtml(nameA)}"
-            data-day="${day}" data-match="${matchIdx}" data-team="0"
-            onchange="window._updateTeamName(this)"
-            onfocus="this.select()"
-          />
+          <div class="team-name-cell-inner">
+            <span class="team-label team-label-a">Team A</span>
+            <input class="team-name-input" type="text"
+              placeholder="Enter names"
+              value="${escHtml(nameA)}"
+              data-day="${day}" data-match="${matchIdx}" data-team="0"
+              onchange="window._updateTeamName(this)"
+              onfocus="this.select()"
+            />
+          </div>
         </td>
         ${holes.map((h,i) => `<td class="hole-cell${h===1?' win-a':h===2?' halved':''}"
           data-day="${day}" data-match="${matchIdx}" data-seg="${segIdx}" data-hole="${i}" data-team="A"
@@ -861,14 +857,16 @@ function buildScorecard(day, matchIdx, segIdx) {
       </tr>
       <tr class="sc-team" data-day="${day}" data-match="${matchIdx}" data-seg="${segIdx}" data-team="1">
         <td class="team-name-cell">
-          <span class="team-label team-label-b">Team B</span>
-          <input class="team-name-input" type="text"
-            placeholder="Enter names"
-            value="${escHtml(nameB)}"
-            data-day="${day}" data-match="${matchIdx}" data-team="1"
-            onchange="window._updateTeamName(this)"
-            onfocus="this.select()"
-          />
+          <div class="team-name-cell-inner">
+            <span class="team-label team-label-b">Team B</span>
+            <input class="team-name-input" type="text"
+              placeholder="Enter names"
+              value="${escHtml(nameB)}"
+              data-day="${day}" data-match="${matchIdx}" data-team="1"
+              onchange="window._updateTeamName(this)"
+              onfocus="this.select()"
+            />
+          </div>
         </td>
         ${holes.map((h,i) => `<td class="hole-cell${h===3?' win-b':h===2?' halved':''}"
           data-day="${day}" data-match="${matchIdx}" data-seg="${segIdx}" data-hole="${i}" data-team="B"
