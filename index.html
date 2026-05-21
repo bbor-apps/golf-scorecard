@@ -323,13 +323,15 @@
   .sc-team-header td.team-name-cell {
     padding: 10px 10px 3px;
     vertical-align: bottom;
+    overflow: visible;
+    white-space: nowrap;
   }
   .team-name-cell-inner {
     display: flex;
     align-items: baseline;
-    gap: 5px;
+    gap: 6px;
     flex-wrap: nowrap;
-    overflow: hidden;
+    overflow: visible;
   }
   .team-label {
     font-family: 'DM Mono', monospace;
@@ -350,8 +352,9 @@
     border: none;
     border-bottom: 1px dashed rgba(0,0,0,0.15);
     outline: none;
-    width: 100%;
-    min-width: 0;
+    width: auto;
+    min-width: 120px;
+    max-width: 100%;
     padding: 0 2px;
     cursor: text;
     transition: border-color 0.2s;
@@ -883,7 +886,7 @@ function buildScorecard(day, matchIdx, segIdx) {
     </thead>
     <tbody>
       <tr class="sc-team-header">
-        <td class="team-name-cell" colspan="7">
+        <td class="team-name-cell" colspan="6">
           <div class="team-name-cell-inner">
             <span class="team-label team-label-a">Team A</span>
             <input class="team-name-input" type="text"
@@ -904,7 +907,7 @@ function buildScorecard(day, matchIdx, segIdx) {
           ><div class="hole-cell-inner">${h===1?'W':h===2?'-':''}</div></td>`).join('')}
       </tr>
       <tr class="sc-team-header">
-        <td class="team-name-cell" colspan="7">
+        <td class="team-name-cell" colspan="6">
           <div class="team-name-cell-inner">
             <span class="team-label team-label-b">Team B</span>
             <input class="team-name-input" type="text"
