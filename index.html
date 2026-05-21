@@ -390,7 +390,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 600;
     color: transparent;
     transition: background 0.12s, color 0.12s;
@@ -907,7 +907,7 @@ function buildScorecard(day, matchIdx, segIdx) {
         ${holes.map((h,i) => `<td class="hole-cell${h===1?' win-a':h===2?' halved':''}"
           data-day="${day}" data-match="${matchIdx}" data-seg="${segIdx}" data-hole="${i}" data-team="A"
           onclick="window._cycleHole(this)"
-          ><div class="hole-cell-inner">${h===1?'W':h===2?'½':''}</div></td>`).join('')}
+          ><div class="hole-cell-inner">${h===1?'W':h===2?'-':''}</div></td>`).join('')}
       </tr>
       <tr class="sc-team-header">
         <td class="team-name-cell" colspan="7">
@@ -928,7 +928,7 @@ function buildScorecard(day, matchIdx, segIdx) {
         ${holes.map((h,i) => `<td class="hole-cell${h===3?' win-b':h===2?' halved':''}"
           data-day="${day}" data-match="${matchIdx}" data-seg="${segIdx}" data-hole="${i}" data-team="B"
           onclick="window._cycleHole(this)"
-          ><div class="hole-cell-inner">${h===3?'W':h===2?'½':''}</div></td>`).join('')}
+          ><div class="hole-cell-inner">${h===3?'W':h===2?'-':''}</div></td>`).join('')}
       </tr>
       <tr class="sc-status">
         <td class="team-col"></td>
