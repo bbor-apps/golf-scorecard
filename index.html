@@ -465,17 +465,19 @@
     justify-content: space-between;
     padding: 11px 16px;
   }
-  .format-card-header.scramble  { background: var(--team-a-bg); }
   .format-card-header.alternate { background: var(--team-b-bg); }
-  .format-card-header.chapman   { background: #3a3a3a; }
-  .format-card-header.scoring   { background: #1a1a1a; }
-  .format-holes {
+  .format-card-header.chapman   { background: #2e2e2e; }
+  .format-card-header.bestball  { background: #1b5e8a; }
+  .format-card-header.altshot   { background: #1a1a1a; }
+  .format-card-header.scramble  { background: var(--team-a-bg); }
+  .format-card-header.fourball  { background: #3a5a2a; }
+  .format-card-header.shamble   { background: #5a3a6a; }
+  .format-tag {
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
   }
   .format-name {
     font-family: 'DM Sans', sans-serif;
@@ -890,78 +892,72 @@
     <div class="formats-view">
 
       <div class="format-card">
-        <div class="format-card-header scramble">
-          <span class="format-holes">Holes 1–6</span>
-          <span class="format-name">Scramble</span>
-        </div>
-        <div class="format-card-body">
-          <p class="format-desc">Both players tee off on every hole. The team picks the best drive, then both hit from that spot. Keep choosing the best shot and hitting from there until the ball is holed.</p>
-          <div class="format-rules">
-            <div class="format-rule"><span class="rule-icon">→</span>Both players tee off</div>
-            <div class="format-rule"><span class="rule-icon">→</span>Choose best ball</div>
-            <div class="format-rule"><span class="rule-icon">→</span>Both hit from that spot</div>
-            <div class="format-rule"><span class="rule-icon">→</span>Repeat until holed</div>
-            <div class="format-rule"><span class="rule-icon">→</span>One team score per hole</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="format-card">
         <div class="format-card-header alternate">
-          <span class="format-holes">Holes 7–12</span>
           <span class="format-name">Partner Alternate</span>
+          <span class="format-tag">Custom Format</span>
         </div>
         <div class="format-card-body">
-          <p class="format-desc">Each player always has their own ball in play — but your partner hits your next shot. You alternate hitting each other's ball until both are holed. Team score is the better of the two balls.</p>
-          <div class="format-example">
-            <div class="format-example-label">Example — Ty & Baker</div>
-            <div class="format-example-row">
-              <span class="ex-ball ball-a">Ty's Ball</span>
-              <span class="ex-shots">Ty tees off → Baker hits → Ty hits → Baker hits…</span>
-            </div>
-            <div class="format-example-row">
-              <span class="ex-ball ball-b">Baker's Ball</span>
-              <span class="ex-shots">Baker tees off → Ty hits → Baker hits → Ty hits…</span>
-            </div>
-          </div>
-          <div class="format-rules">
-            <div class="format-rule"><span class="rule-icon">→</span>Both players always have their own ball</div>
-            <div class="format-rule"><span class="rule-icon">→</span>Your partner always hits your next shot</div>
-            <div class="format-rule"><span class="rule-icon">→</span>Team score = better of the two balls</div>
-          </div>
+          <p class="format-desc">This is a team format where both players keep their own ball in play throughout the hole, but your partner always hits your next shot. For example, Player A tees off, Player B hits the second shot, Player A hits the third shot, and so on until the ball is holed. At the same time, a second ball is in play following the same pattern in reverse. The team's score on each hole is the better score of the two balls. This format creates constant teamwork because every shot directly affects your partner's next shot.</p>
         </div>
       </div>
 
       <div class="format-card">
         <div class="format-card-header chapman">
-          <span class="format-holes">Holes 13–18</span>
           <span class="format-name">Chapman</span>
+          <span class="format-tag">Pinehurst</span>
         </div>
         <div class="format-card-body">
-          <p class="format-desc">Both players tee off, then hit each other's drive. After those second shots, you choose the best ball and play alternate shot from there until holed. One team score per hole.</p>
-          <div class="format-rules">
-            <div class="format-rule"><span class="rule-icon">1</span>Both players tee off</div>
-            <div class="format-rule"><span class="rule-icon">2</span>Both hit partner's drive</div>
-            <div class="format-rule"><span class="rule-icon">3</span>Choose best second shot</div>
-            <div class="format-rule"><span class="rule-icon">4</span>Alternate shot from there until holed</div>
-          </div>
+          <p class="format-desc">The Chapman format is played with teams of two and combines elements of scramble and alternate shot. Both players tee off, then each player hits their partner's drive. The team selects the best of those second shots and continues from that position using alternate shot until the ball is holed. Chapman rewards teamwork and strategy while still allowing both players to contribute early in the hole before the pressure of alternate shot begins.</p>
         </div>
       </div>
 
       <div class="format-card">
-        <div class="format-card-header scoring">
-          <span class="format-holes">Scoring</span>
-          <span class="format-name">Match Play</span>
+        <div class="format-card-header bestball">
+          <span class="format-name">Best Ball</span>
+          <span class="format-tag">Better Ball</span>
         </div>
         <div class="format-card-body">
-          <p class="format-desc">Each hole is its own battle. Win the hole, go 1 up. Tie the hole, it's halved. The segment (6 holes) is won when a team can't be caught — if you're 2 up with 1 to play, the segment is yours. 1 point per segment, 3 points available per match per day.</p>
-          <div class="format-rules">
-            <div class="format-rule"><span class="rule-icon">→</span>1 point per 6-hole segment</div>
-            <div class="format-rule"><span class="rule-icon">→</span>3 segments = 3 points per match</div>
-            <div class="format-rule"><span class="rule-icon">→</span>Segment won when lead > holes remaining</div>
-            <div class="format-rule"><span class="rule-icon">→</span>Max double bogey pickup</div>
-            <div class="format-rule"><span class="rule-icon">→</span>Inside 3 feet = good</div>
-          </div>
+          <p class="format-desc">Best Ball is a team format involving two or more players per team. Each golfer plays their own ball for the entire hole. Once all players have finished the hole, the lowest individual score from the team becomes the team score. Best Ball can be played as either stroke play or match play and is one of the most common team golf formats because it is simple to understand and rewards individual good holes while still contributing to the team.</p>
+        </div>
+      </div>
+
+      <div class="format-card">
+        <div class="format-card-header altshot">
+          <span class="format-name">Alternate Shot</span>
+          <span class="format-tag">Foursomes</span>
+        </div>
+        <div class="format-card-body">
+          <p class="format-desc">Alternate Shot, also known as Foursomes, is a traditional team format played with two-person teams. Each team plays only one ball per hole, with teammates alternating every shot until the ball is holed. Players also alternate who hits the tee shot on each hole. Because every shot affects your partner, Alternate Shot is one of the most demanding and pressure-filled formats in golf and is frequently used in team competitions such as the Ryder Cup.</p>
+        </div>
+      </div>
+
+      <div class="format-card">
+        <div class="format-card-header scramble">
+          <span class="format-name">Scramble</span>
+          <span class="format-tag"></span>
+        </div>
+        <div class="format-card-body">
+          <p class="format-desc">Scramble is one of the most popular formats for golf outings and team events. Every player on the team tees off, and the team selects the best shot. All players then play their next shot from that location. This process continues until the ball is holed. Scramble formats typically produce low scores and plenty of birdie opportunities, making them enjoyable for players of all skill levels while keeping everyone involved on every hole.</p>
+        </div>
+      </div>
+
+      <div class="format-card">
+        <div class="format-card-header fourball">
+          <span class="format-name">Four Ball</span>
+          <span class="format-tag"></span>
+        </div>
+        <div class="format-card-body">
+          <p class="format-desc">Four Ball is a match play variation of Best Ball played with two-person teams. Each player plays their own ball throughout the hole, and the lowest score from each team is used to determine the winner of that hole. The team with the better score wins the hole and earns a point in match play. Four Ball is commonly used in professional team competitions because it allows aggressive play while still giving players a partner to lean on.</p>
+        </div>
+      </div>
+
+      <div class="format-card">
+        <div class="format-card-header shamble">
+          <span class="format-name">Shamble</span>
+          <span class="format-tag"></span>
+        </div>
+        <div class="format-card-body">
+          <p class="format-desc">A Shamble combines elements of a Scramble and Best Ball. Every player tees off, and the team selects the best drive. From that location, each player plays their own ball for the remainder of the hole. Team scoring is usually based on the best individual score or a combination of scores from the team. A Shamble rewards strong drives while still preserving the individual aspect of golf after the tee shot.</p>
         </div>
       </div>
 
