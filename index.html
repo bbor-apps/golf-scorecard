@@ -194,12 +194,8 @@
     align-items: flex-end;
     width: 100%;
   }
-  .pt-team-block {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding-bottom: 0;
+  .match-header {
+    position: relative;
   }
   .pt-team-block.team-a { align-items: flex-start; }
   .pt-team-block.team-b { align-items: flex-end; }
@@ -253,7 +249,7 @@
   }
   .match-card.collapsed .match-chevron { transform: rotate(-90deg); }
   .segment-body {
-    transition: none;
+    display: block;
   }
   .match-card.collapsed .segment-body {
     display: none;
@@ -266,12 +262,21 @@
     color: rgba(255,255,255,0.6);
     margin-left: auto;
     white-space: nowrap;
+    flex: 1;
+    text-align: right;
+    padding-right: 4px;
   }
   .match-card.collapsed .segment-status-inline {
     display: block;
   }
   .match-card.collapsed .segment-format {
     display: none;
+  }
+  .match-card.collapsed .segment {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .match-card.collapsed .segment:last-child {
+    border-bottom: none;
   }
 
   /* ── SEGMENT ── */
@@ -658,7 +663,6 @@
             <div class="pt-team-bar"></div>
           </div>
         </div>
-      </div>
         <span class="match-chevron">▾</span>
       </div>
       <!-- Segment 1: Holes 1-6 Scramble -->
@@ -763,7 +767,8 @@
         </div>
       </div>
     </div>
-  </div>
+          <span class="match-chevron">▾</span>
+      </div>
 
   <!-- SATURDAY -->
   <div class="day-view" id="view-saturday">
@@ -824,7 +829,8 @@
         <div class="match-summary" id="ms-sat-1-3"></div>
         </div>
       </div>
-    </div>
+            <span class="match-chevron">▾</span>
+      </div>
 
     <!-- Match 2 Saturday -->
     <div class="match-card" id="card-sat-2">
@@ -884,7 +890,8 @@
         </div>
       </div>
     </div>
-  </div>
+          <span class="match-chevron">▾</span>
+      </div>
 
 
   <!-- FORMATS -->
